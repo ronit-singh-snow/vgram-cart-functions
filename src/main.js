@@ -1,6 +1,6 @@
 import { Client, Users, Databases, Query } from 'node-appwrite';
 import AppExpress from '@itznotabug/appexpress';
-import { DatabaseService } from './utils/DatabaseService';
+import { DatabaseService } from './utils/DatabaseService.js';
 import { COUPON_COLLECTION_ID } from './Constants';
 
 const app = new AppExpress();
