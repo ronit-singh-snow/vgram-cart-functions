@@ -10,12 +10,11 @@ const validateCoupons = (request, response) => {
     const couponRecordId = params.couponRecordId;
 
     var dbService = new DatabaseService();
-    dbService.getDocument(COUPON_COLLECTION_ID, couponRecordId).then((response) => {
+    dbService.getDocument(COUPON_COLLECTION_ID, couponRecordId).then((result) => {
         console.log(response);
         context.log(response);
-    })
-
-    response.json(response)
+        response.json(result);
+    });
 }
 
 app.post("/validate_coupon", validateCoupons)
