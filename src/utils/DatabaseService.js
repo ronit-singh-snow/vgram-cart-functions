@@ -1,4 +1,4 @@
-import { APPWRITE_ENDPOINT, DB_NAME, PROJECT_ID } from "../Constants";
+import { APPWRITE_ENDPOINT, DB_NAME, PROJECT_ID } from "../Constants.js";
 import { Client, Databases, Query } from 'node-appwrite';
 
 export class DatabaseService {
