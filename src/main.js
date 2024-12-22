@@ -15,7 +15,7 @@ const validateCoupons = (request, response) => {
         context.log(response);
     })
 
-    response.json()
+    response.json(response)
 }
 
 app.post("/validate_coupon", validateCoupons)
