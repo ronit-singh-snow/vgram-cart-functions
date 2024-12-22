@@ -11,8 +11,6 @@ const validateCoupons = (request, response) => {
 
     var dbService = new DatabaseService();
     dbService.getDocument(COUPON_COLLECTION_ID, couponRecordId).then((result) => {
-        console.log(response);
-        context.log(response);
         response.json(result);
     });
 }

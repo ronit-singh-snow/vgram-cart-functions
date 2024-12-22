@@ -10,7 +10,12 @@ export class DatabaseService {
         this.database = new Databases(client)
     }
 
-    getDocument(collectionId, documentId) {
-        return this.database.getDocument(DB_NAME, collectionId, documentId);
+    async getDocument(collectionId, documentId) {
+        try {
+            const response = await this.database.getDocument(DB_NAME, collectionId, documentId);
+            return response;
+        } catch(err) {
+            return "Error Observed"
+        }
     }
 }
