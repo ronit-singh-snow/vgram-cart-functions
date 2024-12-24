@@ -1,7 +1,7 @@
 import AppExpress from '@itznotabug/appexpress';
 
 import { COUPON_COLLECTION_ID, DB_NAME } from './Constants.js';
-import AppwriteService from './utils/appwriteHelper.js';
+const AppwriteService = require('./utils/appwriteHelper');
 
 const app = new AppExpress();
 
