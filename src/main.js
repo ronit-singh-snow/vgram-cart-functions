@@ -13,6 +13,8 @@ const validateCoupons = (request, response) => {
     dbService.getDocument(COUPON_COLLECTION_ID, couponRecordId).then((result) => {
         response.json(result);
     });
+
+    response.json("Hello World");
 }
 
 app.post("/validate_coupon", validateCoupons)
