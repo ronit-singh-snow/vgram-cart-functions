@@ -5,16 +5,14 @@ import { COUPON_COLLECTION_ID } from './Constants.js';
 
 const app = new AppExpress();
 
-const validateCoupons = (request, response) => {
+const validateCoupons = async (request, response) => {
     let params = request.body;
     const couponRecordId = params.couponRecordId;
 
     var dbService = new DatabaseService();
-    dbService.getDocument(COUPON_COLLECTION_ID, couponRecordId).then((result) => {
-        response.json(result);
-    });
+    const result = await dbService.getDocument(COUPON_COLLECTION_ID, couponRecordId).
 
-    response.json("Hello World");
+    response.json(result);
 }
 
 app.post("/validate_coupon", validateCoupons)
