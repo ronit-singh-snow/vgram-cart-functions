@@ -11,9 +11,9 @@ export class AppwriteService {
             .setKey(apiKey);
     }
 
-    async fetchCollectionData(databaseId, collectionId) {
+    async fetchCollectionData(databaseId, collectionId, query) {
         try {
-            const response = await this.databases.listDocuments(databaseId, collectionId);
+            const response = await this.databases.listDocuments(databaseId, collectionId, query);
             return response.documents;
         } catch (error) {
             console.error('Error fetching collection data:', error);
