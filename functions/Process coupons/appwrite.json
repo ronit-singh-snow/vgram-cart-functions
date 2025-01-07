@@ -54,6 +54,7 @@
             "runtime": "node-18.0",
             "scopes": [
                 "users.read",
+                "users.write",
                 "databases.read",
                 "collections.read",
                 "attributes.read",

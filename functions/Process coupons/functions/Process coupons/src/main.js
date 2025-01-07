@@ -61,6 +61,44 @@ app.get("/api_keys", (request, response) => {
     response.json({
         GOOGLE_PLACES_API_KEY: process.env.GOOGLE_PLACES_API_KEY
     })
+});
+
+app.delete("/delete_account", async (request, response) => {
+    const {email, phoneNumber} = request.body;
+    let query = [];
+    if (email)
+        query = [Query.equal("email", email)];
+    else if (phoneNumber)
+        query = [Query.equal("phone", phoneNumber)];
+
+    try {
+        let appwriteService = new AppwriteService(request.headers["x-appwrite-key"]);
+        const result = await appwriteService.searchUser(query);
+
+        if (result && result.total > 0) {
+            const status = await appwriteService.deleteUser(result.users[0].$id);
+            if (status === "success")
+                return response.json({
+                    status: "success",
+                    userId: result.users[0].$id
+                });
+            else return response.json({
+                    status: "failed",
+                    userId: result.users[0].$id,
+                    message: "Error occurred while deleting the user record."
+                });
+        }
+        else
+            response.json({
+                status: "Failed",
+                message: "No record found for the Provided inputs."
+            });
+    } catch(error) {
+        console.log(JSON.stringify(error));
+        response.json({
+            status: "error"
+        })
+    }
 })
 
 app.get("/", (request, response) => {
