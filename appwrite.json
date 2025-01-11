@@ -48,7 +48,7 @@
             "execute": [
                 "any"
             ],
-            "name": "Process coupons",
+            "name": "process-coupons",
             "enabled": true,
             "logging": true,
             "runtime": "node-18.0",
@@ -66,7 +66,7 @@
             "timeout": 15,
             "entrypoint": "src/main.js",
             "commands": "npm install",
-            "path": "functions/Process coupons"
+            "path": "functions/process-coupons"
         }
     ],
     "databases": [
