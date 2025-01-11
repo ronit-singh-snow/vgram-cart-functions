@@ -59,7 +59,11 @@ app.post("/validate_coupon", async (request, response) => {
 
 app.get("/api_keys", (request, response) => {
     response.json({
-        GOOGLE_PLACES_API_KEY: process.env.GOOGLE_PLACES_API_KEY
+        GOOGLE_PLACES_API_KEY: process.env.GOOGLE_PLACES_API_KEY,
+        APPWRITE_ENDPOINT: process.env.APPWRITE_FUNCTION_API_ENDPOINT,
+        PROJECT_ID: process.env.APPWRITE_FUNCTION_PROJECT_ID,
+        APP_DELIVERY_FEE: process.env.DELIVERY_FEE,
+        APP_PLATFORM_FEE: process.env.PLATFORM_FEE
     })
 });
 
