@@ -1,16 +1,24 @@
 import AppExpress from '@itznotabug/appexpress';
 import { AppwriteService } from './appwriteHelper.js';
-import { API_KEY, APPWRITE_ENDPOINT, COUPON_COLLECTION_ID, DB_NAME, ORDER_COLLECTION_ID, PROJECT_ID } from './constants.js';
+import { COUPON_COLLECTION_ID, DB_NAME, ORDER_COLLECTION_ID } from './constants.js';
 import { Query } from 'node-appwrite';
 
 const app = new AppExpress();
 
 app.post("/validate_coupon", async (request, response) => {
     let appwriteService = new AppwriteService(request.headers["x-appwrite-key"]);
-    const {couponId, userId, couponCode, totalCartValue} = request.body;
+    const { userId, couponCode, totalCartValue} = request.body;
 
     try {
-        const coupon = await appwriteService.getDocumentById(DB_NAME, COUPON_COLLECTION_ID, couponId);
+        const coupons = await appwriteService.fetchCollectionData(DB_NAME, COUPON_COLLECTION_ID, [Query.equal("code", couponCode)]);
+        if (coupons.length == 0) {
+            return response.json({
+                status: "error",
+                message: "No coupons found with the code " + couponCode
+            })
+        }
+
+        let coupon = coupons[0];
         if (new Date(coupon.expiry_date) < new Date()) {
             return response.json({
                 status: "error",
