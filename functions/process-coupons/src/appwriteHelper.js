@@ -51,5 +51,17 @@ export class AppwriteService {
         }
     }
 
+    async updateEmail(userId, email) {
+        try {
+            await this.users.updateEmail(
+                userId, // userId
+                email // email
+            );
+            return "success";
+        } catch (err) {
+            return "error";
+        }
+    }
+
 }
 

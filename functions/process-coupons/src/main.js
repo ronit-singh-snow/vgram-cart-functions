@@ -111,7 +111,28 @@ app.delete("/delete_account", async (request, response) => {
             status: "error"
         })
     }
-})
+});
+
+app.post("/update_email", (request, response) => {
+    const {email, userId} = request.body;
+    if (!userId || !email) {
+        response.json({
+            status: "error"
+        });
+        return;
+    }
+    let appwriteService = new AppwriteService(request.headers["x-appwrite-key"]);
+    try {
+        const result = appwriteService.updateEmail(userId, email);
+        response.json({
+            status: "success"
+        });
+    } catch(err) {
+        response.json({
+            status: "error"
+        });
+    }
+});
 
 app.get("/", (request, response) => {
     response.send("Welcome to Vgram Cart");
